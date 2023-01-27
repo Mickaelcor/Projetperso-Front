@@ -1,3 +1,4 @@
+// Page 404 ERROR
 import React from 'react'
 
 function NotFound() {

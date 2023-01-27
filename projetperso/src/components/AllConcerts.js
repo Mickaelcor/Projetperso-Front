@@ -1,3 +1,5 @@
+// Page pour afficher tous les concerts
+
 import React, { useReducer, useEffect } from 'react'
 import axios from 'axios'
 import { Card, Icon } from 'semantic-ui-react'
@@ -45,12 +47,15 @@ function AllConcerts() {
                     state.loading ? 'Loading...' : state.concerts.data.map((concert, index) => {
                         return (
                             <div key={index}>
-                                <Card>
+                                <Card href={["/concert/" + concert._id]}>
                                     <Card.Content header={concert.titre} />
                                     <Card.Content extra>
                                         <Icon name='user' />{concert.artiste}
                                     </Card.Content>
                                     <Card.Content description={concert.description} />
+                                    <Card.Content description={concert.date_debut} />
+                                    <Card.Content description={concert.date_fin} />
+
 
                                 </Card>
                             </div>

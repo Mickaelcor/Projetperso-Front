@@ -11,6 +11,8 @@ import AllUsers from './components/AllUsers';
 import Profile from './components/Profile';
 import NewConcert from './components/NewConcert';
 import AllConcerts from './components/AllConcerts';
+import Concert from './components/Concert';
+import ImageUpload from './components/ImageUpload';
 
 
 function App() {
@@ -21,9 +23,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/allusers" element={<AllUsers />} />
-        <Route path="/users/:name" element={<Profile />} />
+        <Route path="/user/:id" element={<Profile />} />
         <Route path="/newconcert" element={<NewConcert />} />
         <Route path='/allconcerts' element={<AllConcerts />} />
+        <Route path='/concert/:id' element={<Concert />} />
+        <Route path='/uploadimage' element={<ImageUpload />} />
         <Route path="/*" element={<NotFound />} />
 
       </Routes>

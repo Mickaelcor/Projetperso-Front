@@ -1,61 +1,59 @@
-// Page Profil perso
+// Page pour voir 1 seul concert
 
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-function Profile() {
+import moment from 'moment'
+import 'moment/locale/fr'
+
+function Concert() {
 
     const params = useParams()
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
-    const [users, setUser] = useState({})
+    const [concerts, setConcert] = useState({})
 
     useEffect(() => {
-        axios.get(`http://localhost:5001/user/${params.id}`)
+        axios.get(`http://localhost:5001/oneconcert/${params.id}`)
             .then(response => {
                 setLoading(false)
                 setError('')
-                setUser(response.data.data)
+                setConcert(response.data.data)
             })
             .catch(error => {
                 setLoading(false)
                 setError(error)
-                setUser({})
+                setConcert({})
             })
     })
 
     return (
-        <div>
-            <h1>Hello, {params.id}</h1>
+        <div>Concert id {params.id}
             <br />
             {
-                loading ? 'Loading..' : users.prenom
+                loading ? 'Loading..' : concerts.titre
             }
             <br />
             {
-                loading ? 'Loading..' : users.nom
+                loading ? 'Loading..' : concerts.artiste
             }
             <br />
             {
-                loading ? 'Loading..' : users.email
+                loading ? 'Loading..' : moment(concerts.date_debut).format('L')
             }
             <br />
             {
-                loading ? 'Loading..' : users.password
+                loading ? 'Loading..' : moment(concerts.date_fin).format('L')
             }
             <br />
             {
-                loading ? 'Loading..' : users.age
-            }
-            <br />
-            {
-                loading ? 'Loading..' : users.tel
+                loading ? 'Loading..' : concerts.nbr_place + " places"
             }
             {error ? 'error' : null}
         </div>
     )
 }
 
-export default Profile
+export default Concert

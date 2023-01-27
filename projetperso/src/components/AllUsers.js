@@ -1,3 +1,5 @@
+// Page pour voir tous les utilisateurs
+
 import React, { useReducer, useEffect } from 'react'
 import axios from 'axios'
 import { Card, Icon } from 'semantic-ui-react'

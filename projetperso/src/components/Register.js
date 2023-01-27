@@ -10,6 +10,10 @@ class Register extends Component {
 
                     <label>Username:</label>
                     <input type="text" name="username" />
+                    <label>Prénom:</label>
+                    <input type="text" name="prenom" />
+                    <label>Nom:</label>
+                    <input type="text" name="nom" />
                     <label>Email:</label>
                     <input type="email" name="email" />
                     <label>Mot de passe</label>

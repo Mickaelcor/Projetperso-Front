@@ -1,4 +1,5 @@
 // Page ajout de concert
+
 import React, { Component } from 'react'
 import { Button, Checkbox, Form, Input, Radio, Select, TextArea, } from 'semantic-ui-react'
 
@@ -20,6 +21,33 @@ class NewConcert extends Component {
                             label='Artiste'
                             placeholder='artiste'
                             name='artiste'
+                        />
+                        <Form.Field
+                            control={Input}
+                            label='Date début concert'
+                            placeholder='Date'
+                            name='date_debut'
+                            type='Date'
+                        />
+                        <Form.Field
+                            control={Input}
+                            label='Date fin concert'
+                            placeholder='Date'
+                            name='date_fin'
+                            type='Date'
+                        />
+                        <Form.Field
+                            control={Input}
+                            label='Nombre de place'
+                            placeholder='50'
+                            name='nbr_place'
+                            type='Number'
+                        />
+                        <Form.Field
+                            control={Input}
+                            label='Reference'
+                            placeholder='XXXX'
+                            name='reference'
                         />
                     </Form.Group>
                     <Form.Field
