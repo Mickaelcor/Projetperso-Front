@@ -4,8 +4,8 @@ import React from 'react'
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
 import Login from './Login'
 import Register from './Register'
-import Navbar from './Navbar/Navbar'
-import Footer from './Footer/Footer'
+
+
 
 
 function Home() {
@@ -13,8 +13,8 @@ function Home() {
 
     return (
         <div>
-            <Navbar />
-            <h1>Hello</h1>
+
+            <div className="bg-red-500">Hello</div>
             <Segment placeholder>
                 <Grid columns={2} relaxed='very' stackable>
                     <Grid.Column>
@@ -28,7 +28,7 @@ function Home() {
 
                 <Divider vertical>Or</Divider>
             </Segment>
-            <Footer />
+
         </div>
     )
 }
