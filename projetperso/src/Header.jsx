@@ -1,14 +1,18 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "./UserContext.jsx";
 
 export default function Header() {
-    return (
+    // Pour mettre le nom de la personne connecté une fois log
+    const { user } = useContext(UserContext);
 
+    return (
         <header className='flex justify-between'>
-            <a href="/" className='flex items-center gap-1'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-6">
+            <Link to={'/'} className='flex items-center gap-1'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
             </svg>
                 <span className='font-bold text-xl'>ConcertPlace</span>
-            </a>
+            </Link>
             <div className='flex gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-300'>
                 <div>Anywhere</div>
                 <div className='border-l border-gray-300'></div>
@@ -21,7 +25,7 @@ export default function Header() {
                     </svg>
                 </button>
             </div>
-            <Link to={'/login'} className='flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 '>
+            <Link to={user ? '/account' : '/login'} className='flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 '>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
@@ -30,6 +34,12 @@ export default function Header() {
                         <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                     </svg>
                 </div>
+                {/* Permet de verifier si un user existe et si c'est le cas affiche le nom de l'objet user*/}
+                {!!user && (
+                    <div>
+                        {user.name}
+                    </div>
+                )}
             </Link>
         </header>
 

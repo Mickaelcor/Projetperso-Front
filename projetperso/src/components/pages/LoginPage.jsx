@@ -1,24 +1,32 @@
 // Importe les hooks "useState" et le composant "Link" de React Router DOM
+import { Link, Navigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { UserContext } from "../../UserContext.jsx";
+
 
 // Définit le composant "LoginPage"
 export default function LoginPage() {
     // Définit les états locaux "email" et "password" avec des valeurs initiales vides
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const [redirect, setRedirect] = useState(false);
+    const { setUser } = useContext(UserContext);
     async function handleLoginSubmit(ev) {
-        ev.prevenDefault();
+        ev.preventDefault();
         try {
-            await axios.post('http://localhost5001/login', { email, password });
+            const { data } = await axios.post('/login', { email, password });
+            setUser(data);
             alert('Login successful');
+            setRedirect(true);
         } catch (e) {
             alert('Login failed');
         }
     }
 
+    if (redirect) {
+        return <Navigate to={'/'} />
+    }
     // Retourne le formulaire de connexion
     return (
         <div className="mt-4 grow flex items-center justify-around">
