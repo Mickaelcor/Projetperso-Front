@@ -6,7 +6,9 @@ import Layout from './Layout';
 import RegisterPage from './components/pages/RegisterPage';
 import axios from 'axios';
 import { UserContextProvider } from './UserContext';
-import AccountPage from './components/pages/AccountPage';
+import ProfilePage from './components/pages/ProfilePage.jsx';
+import PlacesPage from './components/pages/PlacesPage';
+import PlacesFormPage from './components/pages/PlacesFormPage.jsx';
 
 axios.defaults.baseURL = 'http://localhost:5001';
 axios.defaults.withCredentials = true;
@@ -14,10 +16,7 @@ axios.defaults.withCredentials = true;
 
 // import NotFound from './components/NotFound';
 
-// import NewConcert from './components/NewConcert';
-// import AllConcerts from './components/AllConcerts';
-// import Concert from './components/Concert';
-// import ImageUpload from './components/ImageUpload';
+
 
 
 function App() {
@@ -28,16 +27,15 @@ function App() {
           <Route index element={<IndexPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/account/:subpage?" element={<AccountPage />} />
-          <Route path="/account/:subpage/:action" element={<AccountPage />} />
+          <Route path="/account" element={<ProfilePage />} />
+          <Route path="/account/places" element={<PlacesPage />} />
+          <Route path="/account/places/new" element={<PlacesFormPage />} />
+          <Route path="/account/places/:id" element={<PlacesFormPage />} />
         </Route>
       </Routes>
     </UserContextProvider>
 
-    //   <Route path="/newconcert" element={<NewConcert />} />
-    //   <Route path='/allconcerts' element={<AllConcerts />} />
-    //   <Route path='/concert/:id' element={<Concert />} />
-    //   <Route path='/uploadimage' element={<ImageUpload />} />
+
     //   <Route path="/*" element={<NotFound />} /> */}
 
 
