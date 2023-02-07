@@ -16,6 +16,7 @@ export default function PlacesFormPage() {
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [maxGuests, setMaxGuests] = useState(1);
+    const [price, setPrice] = useState(1);
     const [redirect, setRedirect] = useState(false);
     useEffect(() => {
         if (!id) {
@@ -32,6 +33,7 @@ export default function PlacesFormPage() {
             setCheckIn(data.checkIn);
             setCheckOut(data.checkOut);
             setMaxGuests(data.maxGuests);
+            setPrice(data.price);
         });
     }, [id]);
     // Fonction css h2 du formulaire
@@ -64,7 +66,7 @@ export default function PlacesFormPage() {
         const placeData = {
             title, address, addedPhotos,
             description, perks, extraInfo,
-            checkIn, checkOut, maxGuests
+            checkIn, checkOut, maxGuests, price
         };
         if (id) {
             //update
@@ -112,7 +114,7 @@ export default function PlacesFormPage() {
                 <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />
 
                 {preInput('Horaire & Nombre de places', 'horaire du concert, et nombre de places disponible à la reservation')}
-                <div className="grid gap-2 sm:grid-cols-3">
+                <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
                     <div>
                         <h3 className="mt-2 -mb-1">Heure de début</h3>
                         <input type="text"
@@ -132,6 +134,12 @@ export default function PlacesFormPage() {
                         <input type="number"
                             value={maxGuests}
                             onChange={ev => setMaxGuests(ev.target.value)} />
+                    </div>
+                    <div>
+                        <h3 className="mt-2 -mb-1">Prix par personne</h3>
+                        <input type="number"
+                            value={price}
+                            onChange={ev => setPrice(ev.target.value)} />
                     </div>
                 </div>
                 <button className="primary mt-4">Enregister</button>

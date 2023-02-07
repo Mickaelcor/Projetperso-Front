@@ -34,17 +34,15 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
     // On défini la fonction pour supprimer une photo
     function removePhoto(ev, filename) {
         ev.preventDefault();
-        // (...addedPhotos) afin de passer toutes les photos
+        // (spread opérator ... pour diffuser les élements du tableau et filtrer et suprimer les élements égaux a filename)
         onChange([...addedPhotos.filter(photo => photo !== filename)]);
     }
 
     // On défini la fonction pour selectionner la photo principale
     function selectAsMainPhoto(ev, filename) {
         ev.preventDefault();
-        const addedPhotosWithoutSeleted = addedPhotos
-            .filter(photo => photo !== filename);
-        const newAddedPhotos = [filename, ...addedPhotosWithoutSeleted];
-        onChange(newAddedPhotos);
+        // (spread opérator ... pour diffuser les élements du tableau et filtrer les élements non égaux a filename)
+        onChange([filename, ...addedPhotos.filter(photo => photo !== filename)]);
     }
 
 
