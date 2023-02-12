@@ -17,6 +17,7 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
     // Fonction pour ajout de photo par upload
     function uploadPhoto(ev) {
         const files = ev.target.files;
+        // new FormData meme fonction que le req.body mais pour les fichiers
         const data = new FormData();
         for (let i = 0; i < files.length; i++) {
             data.append('photos', files[i]);

@@ -10,13 +10,12 @@ import ProfilePage from './components/pages/ProfilePage.jsx';
 import PlacesPage from './components/pages/PlacesPage';
 import PlacesFormPage from './components/pages/PlacesFormPage.jsx';
 import PlacePage from './components/pages/PlacePage.jsx';
+import BookingsPage from './components/pages/BookingsPage.jsx';
+import BookingPage from './components/pages/BookingPage.jsx';
+import NotFound from './components/NotFound.jsx';
 
 axios.defaults.baseURL = 'http://localhost:5001';
 axios.defaults.withCredentials = true;
-
-
-// import NotFound from './components/NotFound';
-
 
 
 
@@ -33,12 +32,13 @@ function App() {
           <Route path="/account/places/new" element={<PlacesFormPage />} />
           <Route path="/account/places/:id" element={<PlacesFormPage />} />
           <Route path="/place/:id" element={<PlacePage />} />
+          <Route path="/account/bookings" element={<BookingsPage />} />
+          <Route path="/account/bookings/:id" element={<BookingPage />} />
         </Route>
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </UserContextProvider>
 
-
-    //   <Route path="/*" element={<NotFound />} /> */}
 
 
 
