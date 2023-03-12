@@ -38,8 +38,8 @@ export default function ProfilePage() {
             <AccountNav />
             {subpage === 'profile' && (
                 <div className="text-center max-w-lg mx-auto">
-                    Logged in as {user.name} ({user.email})<br />
-                    <button onClick={logout} className="primary max-w-sm mt-2">Logout</button>
+                    Connecté en tant que {user.name} ({user.email})<br />
+                    <button onClick={logout} className="primary max-w-sm mt-2">Déconnexion</button>
                 </div>
             )}
             {subpage === 'places' && (

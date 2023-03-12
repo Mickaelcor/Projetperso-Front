@@ -9,7 +9,7 @@ export default function AccountNav() {
     }
 
     function linkClasses(type = null) {
-        let classes = ' inline-flex gap-1 py-2 px-6 rounded-full';
+        let classes = ' inline-flex gap-1 py-2 px-6 rounded-full hover:bg-primary hover:text-white';
         if (type === subpage) {
             classes += ' bg-primary text-white';
         } else {

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo.jsx";
 import { UserContext } from "./UserContext.jsx";
 
 export default function Header() {
@@ -8,24 +9,20 @@ export default function Header() {
 
     return (
         <header className='flex justify-between'>
-            <Link to={'/'} className='flex items-center gap-1'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-8">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-            </svg>
-                <span className='font-extrabold text-primary text-xl mt-2'>ConcertPlace</span>
-            </Link>
-            <div className='flex gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-300'>
-                <div>Anywhere</div>
+            <Logo />
+            <div className='flex gap-2 border-2 border-black rounded-full py-2 px-4 shadow-md shadow-gray-300 max-sm:invisible'>
+                <div className="font-semibold">N'importe où</div>
                 <div className='border-l border-gray-300'></div>
-                <div>Any week</div>
+                <div className="font-semibold">Ce mois</div>
                 <div className='border-l border-gray-300'></div>
-                <div>add guests</div>
+                <div className="text-gray-500">Ajoutez des invités</div>
                 <button className='bg-primary text-white p-1 rounded-full'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </button>
             </div>
-            <Link to={user ? '/account' : '/login'} className='flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 '>
+            <Link to={user ? '/account' : '/login'} className='flex items-center gap-2 border-2 border-black rounded-full py-2 px-4 hover:bg-primary hover:text-white'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>

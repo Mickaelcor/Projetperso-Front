@@ -9,6 +9,7 @@ export default function PlacesFormPage() {
     const { id } = useParams();
     const [title, setTitle] = useState('');
     const [address, setAddress] = useState('');
+    const [dateConcert, setDateConcert] = useState('');
     const [addedPhotos, setAddedPhotos] = useState([]);
     const [description, setDescription] = useState('');
     const [perks, setPerks] = useState([]);
@@ -66,7 +67,7 @@ export default function PlacesFormPage() {
         const placeData = {
             title, address, addedPhotos,
             description, perks, extraInfo,
-            checkIn, checkOut, maxGuests, price
+            checkIn, checkOut, maxGuests, price, dateConcert
         };
         if (id) {
             //update
@@ -89,7 +90,7 @@ export default function PlacesFormPage() {
 
 
     return (
-        <div>
+        <div className="lg:px-64 xl:px-64 2xl:px-96">
             <AccountNav />
             <form onSubmit={savePlace}>
                 {preInput('Titre', 'titre de votre concert, qui doit être accrocheur')}
@@ -98,6 +99,9 @@ export default function PlacesFormPage() {
                 {preInput('Adresse', 'adresse ou va se derouler le concert')}
                 <input type="text" value={address} onChange={ev => setAddress(ev.target.value)} placeholder="adresse du concert" />
 
+                {preInput('Date', 'Date du concert')}
+                <input type="date" value={dateConcert} onChange={ev => setDateConcert(ev.target.value)} className="border-2 border-black rounded-xl px-4 py-4" />
+
                 {preInput('Photos', 'quelques photos de vos concerts/etablissements')}
                 <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
 
@@ -105,7 +109,7 @@ export default function PlacesFormPage() {
                 <textarea value={description} onChange={ev => setDescription(ev.target.value)} />
 
                 {preInput('Caractéristiques', 'caractéristiques du lieu ou se déroule le concert')}
-                <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+                <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                     {/* Appel d'un component perks,  selected et onChange afin de faire passer la selection dans le component*/}
                     <Perks selected={perks} onChange={setPerks} />
                 </div>

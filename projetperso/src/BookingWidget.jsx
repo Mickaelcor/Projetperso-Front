@@ -2,14 +2,15 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "./UserContext.jsx";
+import { format } from "date-fns";
 
 export default function BookingWidget({ place }) {
 
-    const [checkIn, setChekIn] = useState('');
     const [numberOfGuests, setNumberOfGuests] = useState(0);
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [redirect, setRedirect] = useState('');
+    const [redirectlog, setRedirectLog] = useState('');
     const { user } = useContext(UserContext);
 
     // Si un user est log autoremplissage de son nom lors de la reservation
@@ -17,18 +18,20 @@ export default function BookingWidget({ place }) {
         if (user) {
             setName(user.name);
         }
+        else {
+            setRedirectLog('/login');
+        }
     }, [user]);
 
-    // Transformer la valeur du calendrier en number
-    let checkInDate = 0;
-    if (checkIn) {
-        checkInDate = parseInt(checkIn);
+    if (redirectlog) {
+        return <Navigate to={redirectlog} />
     }
+
 
     // Fonction reservation 
     async function bookThisPlace() {
         const response = await axios.post('/bookings', {
-            checkIn, numberOfGuests, name, phone,
+            numberOfGuests, name, phone,
             place: place._id,
             price: numberOfGuests * place.price,
         });
@@ -50,10 +53,7 @@ export default function BookingWidget({ place }) {
             <div className="border rounded-2xl mt-4">
                 <div className="flex">
                     <div className="py-3 px-4">
-                        <label>Date: </label>
-                        <input type="date"
-                            value={checkIn}
-                            onChange={ev => setChekIn(ev.target.value)} />
+                        <div>Date: {format(new Date(place.dateConcert), 'dd-MM-yyyy')} </div>
                     </div>
                 </div>
                 <div className="py-3 px-4 border-t">
@@ -62,7 +62,7 @@ export default function BookingWidget({ place }) {
                         value={numberOfGuests}
                         onChange={ev => setNumberOfGuests(ev.target.value)} />
                 </div>
-                {checkInDate > 0 && (
+                {numberOfGuests > 0 && (
                     <div className="py-3 px-4 border-t">
                         <label>Prénom & Nom:</label>
                         <input type="text"
@@ -76,7 +76,7 @@ export default function BookingWidget({ place }) {
                 )}
             </div>
             <button onClick={bookThisPlace} className="primary mt-4">
-                Reserver pour:
+                Réserver pour:
                 {numberOfGuests > 0 && (
                     <span> {numberOfGuests * place.price} €</span>
                 )}
